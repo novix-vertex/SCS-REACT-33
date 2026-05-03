@@ -1,8 +1,11 @@
-import React from 'react'
+import './app.scss'
+import Dock from './components/Dock'
 
 const App = () => {
   return (
-    <div>App</div>
+    <main>
+      <Dock />
+    </main>
   )
 }
 
