@@ -1,3 +1,4 @@
+import DateTime from './DateTime'
 import './navbar.scss'
 
 const Navbar = () => {
@@ -20,7 +21,12 @@ const Navbar = () => {
                     <p>Terminal</p>
                 </div>
             </div>
-            <div className="nav-right"></div>
+            <div className="nav-right">
+               <div className="wifi-icon">
+                    <img src="./navbar-icons/wifi.svg" className="apple" alt="apple icon" />
+                </div>
+                <DateTime />
+            </div>
         </nav>
     )
 }
