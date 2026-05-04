@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 
-const Cli = () => {
+const Cli = ({ windowName, setwindowState }) => {
     const terminalRef = useRef(null);
 
     useEffect(() => {
@@ -74,7 +74,7 @@ const Cli = () => {
     }, []);
 
     return (
-        <MacWindow x={100} y={50} width={"40vw"} height={"40vh"}>
+        <MacWindow x={100} y={50} width={"40vw"} height={"40vh"} windowName={windowName} setwindowState={setwindowState}>
             <div className="cli-content" ref={terminalRef}>
 
             </div>
