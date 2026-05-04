@@ -12,16 +12,16 @@ const Dock = ({ windowState, setwindowState }) => {
             <div className="icon pdf" onClick={() => setwindowState(state=> ({ ...state, pdf: true }))}>
                 <img src="./dock-icons/pdf.svg" alt="pdf icon" />
             </div>
-            <div className="icon calendar">
+            <div className="icon calendar" onClick={()=>{window.open("https://calendar.google.com","_blank")}}>
                 <img src="./dock-icons/calendar.svg" alt="calendar icon" />
             </div>
             <div className="icon spotify" onClick={() => setwindowState(state=> ({ ...state, spotify: true }))}>
                 <img src="./dock-icons/spotify.svg" alt="spotify icon" />
             </div>
-            <div className="icon mail">
+            <div className="icon mail" onClick={()=>{window.open("mailto:shiny@example.com","_blank")}}>
                 <img src="./dock-icons/mail.svg" alt="mail icon" />
             </div>
-            <div className="icon link">
+            <div className="icon link" onClick={()=>{window.open("https://www.linkedin.com","_blank")}}>
                 <img src="./dock-icons/link.svg" alt="link icon" />
             </div>
             <div className="icon cli" onClick={() => setwindowState(state=> ({ ...state, cli: true }))}>
