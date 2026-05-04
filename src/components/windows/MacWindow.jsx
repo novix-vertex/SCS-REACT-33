@@ -1,14 +1,14 @@
 import './macwindow.scss'
 import { Rnd } from 'react-rnd'
 
-const MacWindow = ({ children }) => {
+const MacWindow = ({x,y,width,height, children }) => {
     return (
         <Rnd
         default={{
-            width:"40vw",
-            height:"40vh",
-            x:200,
-            y:100
+            width:width,
+            height:height,
+            x:x,
+            y:y
         }}>
             <section className="window">
                 <div className="nav">

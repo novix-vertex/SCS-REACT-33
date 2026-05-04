@@ -5,7 +5,7 @@ import './github.scss'
 
 const Github = () => {
     return (
-        <MacWindow>
+        <MacWindow x={150} y={100} width={"40vw"} height={"60vh"}>
             <div className='github-cards'>
                 {githubdata.map((elem) => {
                     return (
