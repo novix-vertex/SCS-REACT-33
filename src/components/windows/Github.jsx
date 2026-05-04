@@ -1,15 +1,18 @@
 import MacWindow from './MacWindow'
 import githubdata from '../../assets/github.json'
-import GithubCard from '../GithubCard'
+import GithubCard from './GithubCard';
+import './github.scss'
 
 const Github = () => {
     return (
         <MacWindow>
-            {githubdata.map((elem) => {
-                return (
-                    <GithubCard key={elem.id} project={elem}></GithubCard>
-                );
-            })}
+            <div className='github-cards'>
+                {githubdata.map((elem) => {
+                    return (
+                        <GithubCard key={elem.id} project={elem}></GithubCard>
+                    );
+                })}
+            </div>
         </MacWindow>
     )
 }
