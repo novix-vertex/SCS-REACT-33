@@ -13,7 +13,7 @@ const Note = () => {
     }, []);
 
     return (
-        <MacWindow x={500} y={250} width={"60vw"} height={"50vh"}>
+        <MacWindow x={320} y={250} width={"60vw"} height={"50vh"}>
             <div className="note-window">
                 {markdown ? <SyntaxHighlighter language="typescript" style={atelierEstuaryDark}>{markdown}</SyntaxHighlighter> : <p>Loading...</p>}
             </div>
