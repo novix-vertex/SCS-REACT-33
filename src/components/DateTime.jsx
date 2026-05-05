@@ -1,27 +1,35 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 
-const formatDateTime = (date) => {
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+const formatDateTime = (time) => {
 
-  const dayName = days[date.getDay()]
-  const monthName = months[date.getMonth()]
-  const dayNumber = date.getDate()
+  const formattedTime = time.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true, // change to true if you want AM/PM
+  });
 
-  const hours24 = date.getHours()
-  const period = hours24 >= 12 ? 'pm' : 'am'
-  let hours12 = hours24 % 12
-  if (hours12 === 0) hours12 = 12
+  const formattedDate = time.toLocaleDateString("en-IN", {
+    weekday: "short",  // Mon, Tue
+    day: "numeric",    // 6
+    month: "short",    // May
+    year: "numeric",   // 2026
+  });
 
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const hours = String(hours12).padStart(2, '0')
-
-  return `${dayName} ${monthName} ${dayNumber} ${hours}:${minutes} ${period}`
+  return `${formattedDate} ${formattedTime}`;
 }
 
 const DateTime = () => {
-  const now = new Date()
-  return <div>{formatDateTime(now)}</div>
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+  return <div>{formatDateTime(time)}</div>
 }
 
 export default DateTime

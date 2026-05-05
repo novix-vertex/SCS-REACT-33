@@ -7,7 +7,6 @@ import Github from './components/windows/Github'
 import Note from './components/windows/Note'
 import Pdf from './components/windows/Pdf'
 import Spotify from './components/windows/Spotify'
-import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const App = () => {
 
