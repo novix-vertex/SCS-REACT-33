@@ -1,82 +1,102 @@
-import "xterm/css/xterm.css";
+
 import './cli.scss'
 import MacWindow from './MacWindow'
-import { useEffect, useRef } from "react";
-import { Terminal } from "xterm";
-import { FitAddon } from "xterm-addon-fit";
-
+import Console from "react-console-emulator";
+const Terminal = Console.default;
 const Cli = ({ windowName, setwindowState }) => {
-    const terminalRef = useRef(null);
+    const commands = {
+        about: {
+            description: 'About me',
+            usage: 'about',
+            fn: () => 'I am a full-stack web developer passionate about building modern web applications with React, Node.js, and cloud technologies.'
+        },
+        skills: {
+            description: 'List technical skills',
+            usage: 'skills',
+            fn: () => `Frontend: React, Vue.js, Vanilla JS, Sass, HTML/CSS
+Backend: Node.js, Express, Python, Django
+Databases: MongoDB, PostgreSQL, MySQL
+Tools: Git, Docker, Webpack, Vite
+Cloud: AWS, Azure, Heroku`
+        },
+        projects: {
+            description: 'View my projects',
+            usage: 'projects',
+            fn: () => `1. Portfolio Website - React + Vite
+2. E-commerce Platform - MERN Stack
+3. Task Management App - Next.js
+4. Real-time Chat App - Socket.io
+5. Data Dashboard - React + Chart.js`
+        },
+        experience: {
+            description: 'Display work experience',
+            usage: 'experience',
+            fn: () => `Senior Developer @ Tech Corp (2022 - Present)
+  - Led development of 5+ React applications
+  - Mentored junior developers
 
-    useEffect(() => {
-        // Create terminal instance
-        const terminal = new Terminal({
-            cursorBlink: true,
-            theme: {
-                background: "transparent",
-                foreground: "#929695"
-            },
-            fontSize: 14
-        });
-
-        const fitAddon = new FitAddon();
-        terminal.loadAddon(fitAddon);
-
-        // Attach to DOM
-        terminal.open(terminalRef.current);
-        fitAddon.fit();
-
-        // Welcome message
-        terminal.writeln("Welcome to the React terminal!");
-        terminal.writeln("Type 'help' to see commands");
-        terminal.write("\r\nshiny:~$ ");
-
-        let command = "";
-
-        // Input handling
-        terminal.onData((data) => {
-            const charCode = data.charCodeAt(0);
-
-            // Enter key
-            if (charCode === 13) {
-                terminal.write("\r\n");
-                if (command === "help") {
-                    terminal.writeln("Available commands: help, clear, hello");
-                } else if (command === "clear") {
-                    terminal.clear();
-                } else if (command === "hello") {
-                    terminal.writeln("Hello 👋");
-                } else {
-                    terminal.writeln(`Command not found: ${command}`);
-                }
-
-                command = "";
-                terminal.write("\r\nshiny:~$ ");
+Full Stack Developer @ Web Solutions (2020 - 2022)
+  - Built scalable APIs with Node.js
+  - Designed responsive UIs with React`
+        },
+        contact: {
+            description: 'Get contact information',
+            usage: 'contact',
+            fn: () => `Email: ankur@example.com
+Phone: +1 (555) 123-4567
+Location: San Francisco, CA`
+        },
+        github: {
+            description: 'Open GitHub profile',
+            usage: 'github',
+            fn: () => {
+                window.open('https://github.com', '_blank')
+                return 'Opening GitHub...'
             }
+        },
+        resume: {
+            description: 'Download resume',
+            usage: 'resume',
+            fn: () => 'Resume download started...'
+        },
+        social: {
+            description: 'View social media links',
+            usage: 'social',
+            fn: () => `Twitter: @ankurdev
+LinkedIn: /in/ankurprajapati
+Portfolio: ankurprajapati.dev`
+        },
+        echo: {
+            description: 'Echo a passed string',
+            usage: 'echo <string>',
+            fn: (...args) => args.join(' ')
+        }
+    }
 
-            // Backspace
-            else if (charCode === 127) {
-                if (command.length > 0) {
-                    command = command.slice(0, -1);
-                    terminal.write("\b \b");
-                }
-            }
+    const welcomeMessage = `
+╔════════════════════════════════════════╗
+║     Welcome to My Portfolio CLI!       ║
+╚════════════════════════════════════════╝
 
-            // Normal characters
-            else {
-                command += data;
-                terminal.write(data);
-            }
+Hello! 👋 Welcome to my interactive portfolio. You can navigate through my work experience, skills, and projects using terminal commands.
 
-        });
+Type 'help' to see all available commands, or try:
+  • about     - Learn about me
+  • skills    - View my technical skills
+  • projects  - Check out my work
+  • experience - See my career history
+  • contact   - Get in touch
 
-        return () => terminal.dispose();
-    }, []);
-
+Happy exploring! 🚀
+`
     return (
         <MacWindow x={100} y={50} width={"40vw"} height={"40vh"} windowName={windowName} setwindowState={setwindowState}>
-            <div className="cli-content" ref={terminalRef}>
-
+            <div className="cli-content">
+                <Terminal
+                    welcomeMessage={welcomeMessage}
+                    prompt="shiny:~$ "
+                    commands={commands}
+                />
             </div>
         </MacWindow>
     )
