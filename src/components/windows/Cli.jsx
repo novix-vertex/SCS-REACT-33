@@ -42,7 +42,7 @@ Full Stack Developer @ Web Solutions (2020 - 2022)
         contact: {
             description: 'Get contact information',
             usage: 'contact',
-            fn: () => `Email: ankur@example.com
+            fn: () => `Email: user@example.com
 Phone: +1 (555) 123-4567
 Location: San Francisco, CA`
         },
@@ -62,9 +62,9 @@ Location: San Francisco, CA`
         social: {
             description: 'View social media links',
             usage: 'social',
-            fn: () => `Twitter: @ankurdev
-LinkedIn: /in/ankurprajapati
-Portfolio: ankurprajapati.dev`
+            fn: () => `Twitter: @userdev
+LinkedIn: /in/user
+Portfolio: user.dev`
         },
         echo: {
             description: 'Echo a passed string',
@@ -90,7 +90,7 @@ Type 'help' to see all available commands, or try:
 Happy exploring! 🚀
 `
     return (
-        <MacWindow x={100} y={50} width={"40vw"} height={"40vh"} windowName={windowName} setwindowState={setwindowState}>
+        <MacWindow x={100} y={50} width={"50vw"} height={"70vh"} windowName={windowName} setwindowState={setwindowState}>
             <div className="cli-content">
                 <Terminal
                     welcomeMessage={welcomeMessage}
